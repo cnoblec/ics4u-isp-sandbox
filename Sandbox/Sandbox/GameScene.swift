@@ -55,20 +55,19 @@
     func createSceneContents() {
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
         
-    }
-    
-    func touchDown(atPoint pos : CGPoint) {
-        //        if let n = self.circle?.copy() as! SKSpriteNode? {
-        //            n.position = pos
-        //        }
-        circle?.position = pos
         
     }
     
+    func touchDown(atPoint pos : CGPoint) {
+        if let n = self.circle?.copy() as! SKSpriteNode? {
+            n.position = pos
+        }
+    }
+    
     func touchMoved(toPoint pos : CGPoint) {
-        //        if let n = self.circle?.copy() as! SKSpriteNode? {
-        //            n.position = pos
-        //        }
+        if let n = self.circle?.copy() as! SKSpriteNode? {
+            n.position = pos
+        }
         circle?.position = pos
     }
     
@@ -77,8 +76,8 @@
             n.position = pos
             self.addChild(n)
             n.physicsBody = SKPhysicsBody(circleOfRadius: (circle?.size.width)! / 2)
-            
         }
+        self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
     }
     
     

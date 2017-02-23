@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F5EEB821E5F6968008D382A /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F5EEB811E5F6968008D382A /* circle.png */; };
 		3F8DAB831E51F74500158167 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8DAB821E51F74500158167 /* AppDelegate.swift */; };
 		3F8DAB851E51F74500158167 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3F8DAB841E51F74500158167 /* GameScene.sks */; };
 		3F8DAB871E51F74500158167 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3F8DAB861E51F74500158167 /* Actions.sks */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3F5EEB811E5F6968008D382A /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle.png; sourceTree = "<group>"; };
 		3F8DAB7F1E51F74500158167 /* Sandbox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sandbox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F8DAB821E51F74500158167 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F8DAB841E51F74500158167 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 		3F8DAB9A1E51F7A800158167 /* Refrence */ = {
 			isa = PBXGroup;
 			children = (
+				3F5EEB811E5F6968008D382A /* circle.png */,
 				3F8DAB9B1E51F7D500158167 /* README.md */,
 				3F8DAB9C1E51F7D500158167 /* Sofware Story Board.JPG */,
 			);
@@ -150,6 +153,7 @@
 				3F8DAB8E1E51F74500158167 /* Main.storyboard in Resources */,
 				3F8DAB851E51F74500158167 /* GameScene.sks in Resources */,
 				3F8DAB901E51F74500158167 /* Assets.xcassets in Resources */,
+				3F5EEB821E5F6968008D382A /* circle.png in Resources */,
 				3F8DAB931E51F74500158167 /* LaunchScreen.storyboard in Resources */,
 				3F8DAB871E51F74500158167 /* Actions.sks in Resources */,
 			);
@@ -327,6 +331,7 @@
 				3F8DAB991E51F74500158167 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
