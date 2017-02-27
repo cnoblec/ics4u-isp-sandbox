@@ -13,6 +13,8 @@
     
     private var spinnyNode : SKShapeNode?
     private var circle : SKSpriteNode?
+    private var physicsCircle : SKSpriteNode?
+    private var rectangle : SKSpriteNode?
     
     
     //    let width: CGFloat = frame
@@ -20,62 +22,47 @@
     override func didMove(to view: SKView)
     {
         
-        // Get label node from scene and store it for use later
-        //        self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
-        //        if let label = self.label {
-        //            label.alpha = 0.0
-        //            label.run(SKAction.fadeIn(withDuration: 2.0))
-        //        }
-        
-        //        let w = (self.size.width + self.size.height) * 0.05
-        
         
         self.circle = SKSpriteNode.init(imageNamed: "circle.png")
         
         if let circle = self.circle
         {
-            circle.run(SKAction.sequence([SKAction.wait(forDuration: 3),
-                                          SKAction.removeFromParent()]))
+            circle.run(SKAction.sequence([SKAction.removeFromParent()]))
         }
         
-        // Create shape node to use during mouse interaction
-        //        let w = (self.size.width + self.size.height) * 0.05
-        //        self.spinnyNode = SKShapeNode.init(rectOf: CGSize.init(width: w, height: w), cornerRadius: w * 0.3)
-        //
-        //        if let spinnyNode = self.spinnyNode {
-        //            spinnyNode.lineWidth = 2.5
-        //
-        //            spinnyNode.run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat(M_PI), duration: 1)))
-        //            spinnyNode.run(SKAction.sequence([SKAction.wait(forDuration: 0.5),
-        //                                              SKAction.fadeOut(withDuration: 0.5),
-        //                                              SKAction.removeFromParent()]))
-        //        }
-    }
-    
-    func createSceneContents() {
-        self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
+        self.physicsCircle = SKSpriteNode.init(imageNamed: "circle.png")
         
-        
-    }
-    
-    func touchDown(atPoint pos : CGPoint) {
-        if let n = self.circle?.copy() as! SKSpriteNode? {
-            n.position = pos
+        if let physicsCircle = self.physicsCircle
+        {
+            physicsCircle.run(SKAction.sequence([SKAction.wait(forDuration: 3),SKAction.removeFromParent()]))
         }
+
     }
     
-    func touchMoved(toPoint pos : CGPoint) {
-        if let n = self.circle?.copy() as! SKSpriteNode? {
-            n.position = pos
-        }
-        circle?.position = pos
-    }
-    
-    func touchUp(atPoint pos : CGPoint) {
-        if let n = self.circle?.copy() as! SKSpriteNode? {
+    func touchDown(atPoint pos : CGPoint)
+    {
+        if let n = self.circle?.copy() as! SKSpriteNode?
+        {
             n.position = pos
             self.addChild(n)
-            n.physicsBody = SKPhysicsBody(circleOfRadius: (circle?.size.width)! / 2)
+        }
+    }
+    
+    func touchMoved(toPoint pos : CGPoint)
+    {
+        if let n = self.circle?.copy() as! SKSpriteNode?
+        {
+            n.position = pos
+        }
+    }
+    
+    func touchUp(atPoint pos : CGPoint)
+    {
+        if let n = self.physicsCircle?.copy() as! SKSpriteNode?
+        {
+            n.position = pos
+            self.addChild(n)
+            n.physicsBody = SKPhysicsBody(circleOfRadius: (physicsCircle?.size.width)! / 2)
         }
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
     }
