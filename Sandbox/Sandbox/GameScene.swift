@@ -17,10 +17,19 @@
     private var rectangle : SKSpriteNode?
     private var square : SKSpriteNode?
     private var shortSquare : SKSpriteNode?
+    var testNode : SKSpriteNode?
+    var NNOOOOde : SKSpriteNode?
     //    let width: CGFloat = frame
     
     override func didMove(to view: SKView)
     {
+        
+        self.testNode = SKSpriteNode.init(imageNamed: "circle.png")
+        
+        if let testNode = self.testNode
+        {
+            testNode.run(SKAction.sequence([SKAction.wait(forDuration: 3),SKAction.removeFromParent()]))
+        }
         
         self.rectangle = SKSpriteNode.init(color: UIColor.blue, size: CGSize.init(width: 700, height: 100))
         
@@ -45,11 +54,11 @@
         
         self.circle = SKSpriteNode.init(imageNamed: "circle.png")
         
-        if let circle = self.circle
-        {
-            circle.run(SKAction.sequence([SKAction.wait(forDuration: 10), SKAction.removeFromParent()]))
-        }
-        
+//        if let circle = self.circle
+//        {
+//            circle.run(SKAction.sequence([SKAction.removeFromParent()]))
+//        }
+//        
         self.physicsCircle = SKSpriteNode.init(imageNamed: "circle.png")
         
         if let physicsCircle = self.physicsCircle
@@ -58,23 +67,32 @@
         }
         
         StartingScene()
+     
+        if let tNode = self.circle?.copy() as! SKSpriteNode?
+        {
+            self.addChild(tNode)
+            NNOOOOde = tNode
+        }
+        
     }
+    
     
     func touchDown(atPoint pos : CGPoint)
     {
-        if let n = self.circle?.copy() as! SKSpriteNode?
-        {
-            n.position = pos
-            self.addChild(n)
-        }
+//        if let n = self.physicsCircle?.copy() as! SKSpriteNode?
+//        {
+//            n.position = pos
+//            self.addChild(n)
+//        }
     }
     
     func touchMoved(toPoint pos : CGPoint)
     {
-        if let n = self.circle?.copy() as! SKSpriteNode?
-        {
-            n.position = pos
-        }
+//        if let n = self.physicsCircle?.copy() as! SKSpriteNode?
+//        {
+//            n.position = pos
+//        }
+        NNOOOOde?.position = pos
     }
     
     func touchUp(atPoint pos : CGPoint)
@@ -82,8 +100,9 @@
         if let n = self.physicsCircle?.copy() as! SKSpriteNode?
         {
             n.position = pos
-            self.addChild(n)
             n.physicsBody = SKPhysicsBody(circleOfRadius: (physicsCircle?.size.width)! / 2)
+            self.addChild(n)
+
         }
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
     }
@@ -96,11 +115,11 @@
             self.addChild(rnode)
             rnode.physicsBody = SKPhysicsBody(rectangleOf: rnode.size)
         }
-        if let cnode = self.circle?.copy() as! SKSpriteNode?
+        if let cnode = self.physicsCircle?.copy() as! SKSpriteNode?
         {
             cnode.position = CGPoint(x: -300, y: -200)
             self.addChild(cnode)
-            cnode.physicsBody = SKPhysicsBody(circleOfRadius: (circle?.size.width)! / 2)
+            cnode.physicsBody = SKPhysicsBody(circleOfRadius: (physicsCircle?.size.width)! / 2)
         }
         if let bnode = self.square?.copy() as! SKSpriteNode?
         {
