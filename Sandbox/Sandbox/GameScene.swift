@@ -19,6 +19,9 @@
     private var shortSquare : SKSpriteNode?
     var testNode : SKSpriteNode?
     var NNOOOOde : SKSpriteNode?
+    var count : Int = 0
+    var end  = 0
+    let maxNodes = 30
     //    let width: CGFloat = frame
     
     override func didMove(to view: SKView)
@@ -61,10 +64,10 @@
 //        
         self.physicsCircle = SKSpriteNode.init(imageNamed: "circle.png")
         
-        if let physicsCircle = self.physicsCircle
-        {
-            physicsCircle.run(SKAction.sequence([SKAction.wait(forDuration: 3),SKAction.removeFromParent()]))
-        }
+//        if let physicsCircle = self.physicsCircle
+//        {
+//            physicsCircle.run(SKAction.sequence([SKAction.wait(forDuration: 10),SKAction.removeFromParent()]))
+//        }
         
         StartingScene()
      
@@ -79,20 +82,44 @@
     
     func touchDown(atPoint pos : CGPoint)
     {
-//        if let n = self.physicsCircle?.copy() as! SKSpriteNode?
-//        {
-//            n.position = pos
-//            self.addChild(n)
-//        }
+        if end > maxNodes
+        {
+            for node in self.children
+            {
+                if node.name == "circle"
+                {
+                    node.removeFromParent()
+                    break
+                }
+            }
+        }
+        if let n = self.physicsCircle?.copy() as! SKSpriteNode?
+        {
+            n.position = pos
+            self.addChild(n)
+            
+//            for node in self.children
+//            {
+//                if node.name == "circle"
+//                {
+//                    end += 1
+//                }
+//            }
+        }
+        NNOOOOde?.isHidden = true
+        
+//        // count the number of circle nodes
+//        count = 0
+//        
+//        print("there are \(count) circles in the scene")
+//        self.childNode(withName: <#T##String#>)
     }
     
     func touchMoved(toPoint pos : CGPoint)
     {
-//        if let n = self.physicsCircle?.copy() as! SKSpriteNode?
-//        {
-//            n.position = pos
-//        }
-        NNOOOOde?.position = pos
+        self.children[end-1].position = pos
+//        NNOOOOde?.isHidden = false
+//        NNOOOOde?.position = pos
     }
     
     func touchUp(atPoint pos : CGPoint)
@@ -101,10 +128,12 @@
         {
             n.position = pos
             n.physicsBody = SKPhysicsBody(circleOfRadius: (physicsCircle?.size.width)! / 2)
+            n.name = "circle"
             self.addChild(n)
-
+            end += 1
         }
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
+        NNOOOOde?.isHidden = true
     }
     
     public func StartingScene()
