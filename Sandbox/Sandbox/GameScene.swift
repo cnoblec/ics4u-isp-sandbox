@@ -70,16 +70,17 @@
     func touchDown(atPoint pos : CGPoint)
     {
         // remove the first "circle" in the arry when we reach a maximum count
-        if end > maxNodes
+        if self.children.count > maxNodes
         {
-            for node in self.children
-            {
-                if node.name == "circle"
-                {
-                    node.removeFromParent()
-                    break
-                }
-            }
+            self.removeAllChildren()
+//            for node in self.children
+//            {
+//                if node.name == "circle"
+//                {
+//                    node.removeFromParent()
+//                    break
+//                }
+//            }
         }
         
         
@@ -111,8 +112,6 @@
         {
             n.position = pos
         }
-//        NNOOOOde?.isHidden = false
-//        NNOOOOde?.position = pos
     }
     
     func touchUp(atPoint pos : CGPoint)
@@ -120,7 +119,6 @@
         // give sknode a phyiscs body
         if let n = self.children.last
         {
-//            n.position = pos
             n.physicsBody = SKPhysicsBody(circleOfRadius: (physicsCircle.size.width) / 2)
             n.name = "circle"
             end += 1
