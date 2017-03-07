@@ -11,25 +11,18 @@
  
  class GameScene: SKScene {
     
-    private var spinnyNode : SKShapeNode = SKShapeNode()
     private var circle : SKSpriteNode = SKSpriteNode()
     private var physicsCircle : SKSpriteNode = SKSpriteNode()
     private var rectangle : SKSpriteNode = SKSpriteNode()
     private var square : SKSpriteNode = SKSpriteNode()
     private var shortSquare : SKSpriteNode = SKSpriteNode()
-    var testNode : SKSpriteNode = SKSpriteNode()
-    var NNOOOOde : SKSpriteNode = SKSpriteNode()
     var count : Int = 0
     var end  = 0
     let maxNodes = 30
     
     override func didMove(to view: SKView)
     {
-        
-        self.testNode = SKSpriteNode.init(imageNamed: "circle.png")
-
-        testNode.run(SKAction.sequence([SKAction.wait(forDuration: 3),SKAction.removeFromParent()]))
-        
+    
         self.rectangle = SKSpriteNode.init(color: UIColor.blue, size: CGSize.init(width: 700, height: 100))
         rectangle.run(SKAction.sequence([SKAction.wait(forDuration: 10),SKAction.removeFromParent()]))
         
@@ -88,21 +81,7 @@
         let newCircle = SKSpriteNode(imageNamed: "circle.png")
         newCircle.position = pos
         self.addChild(newCircle)
-//            for node in self.children
-//            {
-//                if node.name == "circle"
-//                {
-//                    end += 1
-//                }
-//            }
-//        }
-//        NNOOOOde?.isHidden = true
-    
-//        // count the number of circle nodes
-//        count = 0
-//        
-//        print("there are \(count) circles in the scene")
-//        self.childNode(withName: <#T##String#>)
+
     }
     
     func touchMoved(toPoint pos : CGPoint)
@@ -124,7 +103,6 @@
             end += 1
         }
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
-//        NNOOOOde?.isHidden = true
     }
     
     
