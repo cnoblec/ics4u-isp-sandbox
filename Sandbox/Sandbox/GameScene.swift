@@ -11,77 +11,65 @@
  
  class GameScene: SKScene {
     
-    private var spinnyNode : SKShapeNode?
-    private var circle : SKSpriteNode?
-    private var physicsCircle : SKSpriteNode?
-    private var rectangle : SKSpriteNode?
-    private var square : SKSpriteNode?
-    private var shortSquare : SKSpriteNode?
-    var testNode : SKSpriteNode?
-    var NNOOOOde : SKSpriteNode?
+    private var spinnyNode : SKShapeNode = SKShapeNode()
+    private var circle : SKSpriteNode = SKSpriteNode()
+    private var physicsCircle : SKSpriteNode = SKSpriteNode()
+    private var rectangle : SKSpriteNode = SKSpriteNode()
+    private var square : SKSpriteNode = SKSpriteNode()
+    private var shortSquare : SKSpriteNode = SKSpriteNode()
+    var testNode : SKSpriteNode = SKSpriteNode()
+    var NNOOOOde : SKSpriteNode = SKSpriteNode()
     var count : Int = 0
     var end  = 0
     let maxNodes = 30
-    //    let width: CGFloat = frame
     
     override func didMove(to view: SKView)
     {
         
         self.testNode = SKSpriteNode.init(imageNamed: "circle.png")
-        
-        if let testNode = self.testNode
-        {
-            testNode.run(SKAction.sequence([SKAction.wait(forDuration: 3),SKAction.removeFromParent()]))
-        }
+
+        testNode.run(SKAction.sequence([SKAction.wait(forDuration: 3),SKAction.removeFromParent()]))
         
         self.rectangle = SKSpriteNode.init(color: UIColor.blue, size: CGSize.init(width: 700, height: 100))
-        
-        if let rectangle = self.rectangle
-        {
-            rectangle.run(SKAction.sequence([SKAction.wait(forDuration: 10),SKAction.removeFromParent()]))
-        }
+        rectangle.run(SKAction.sequence([SKAction.wait(forDuration: 10),SKAction.removeFromParent()]))
         
         self.shortSquare = SKSpriteNode.init(color: UIColor.blue, size: CGSize.init(width: 100, height: 100))
-        
-        if let shortSquare = self.shortSquare
-        {
-            shortSquare.run(SKAction.sequence([SKAction.wait(forDuration: 3),SKAction.removeFromParent()]))
-        }
-        
+        shortSquare.run(SKAction.sequence([SKAction.wait(forDuration: 3),SKAction.removeFromParent()]))
+
         self.square = SKSpriteNode.init(color: UIColor.blue, size: CGSize.init(width: 100, height: 100))
-        
-        if let square = self.square
-        {
-            square.run(SKAction.sequence([SKAction.wait(forDuration: 10),SKAction.removeFromParent()]))
-        }
+        square.run(SKAction.sequence([SKAction.wait(forDuration: 10),SKAction.removeFromParent()]))
         
         self.circle = SKSpriteNode.init(imageNamed: "circle.png")
         
-//        if let circle = self.circle
-//        {
-//            circle.run(SKAction.sequence([SKAction.removeFromParent()]))
-//        }
-//        
         self.physicsCircle = SKSpriteNode.init(imageNamed: "circle.png")
         
-//        if let physicsCircle = self.physicsCircle
-//        {
-//            physicsCircle.run(SKAction.sequence([SKAction.wait(forDuration: 10),SKAction.removeFromParent()]))
-//        }
+        //starting scene
         
-        StartingScene()
-     
-        if let tNode = self.circle?.copy() as! SKSpriteNode?
-        {
-            self.addChild(tNode)
-            NNOOOOde = tNode
-        }
+        rectangle.position = CGPoint(x: 0, y: -400)
+        self.addChild(rectangle)
+        rectangle.physicsBody = SKPhysicsBody(rectangleOf: rectangle.size)
+
+        physicsCircle.position = CGPoint(x: -300, y: -200)
+        self.addChild(physicsCircle)
+        physicsCircle.physicsBody = SKPhysicsBody(circleOfRadius: (physicsCircle.size.width) / 2)
+    
+        square.position = CGPoint(x: -300, y: -500)
+        self.addChild(square)
+        square.physicsBody = SKPhysicsBody(rectangleOf: square.size)
+        
+        shortSquare.position = CGPoint(x: 300, y: -500)
+        self.addChild(shortSquare)
+        shortSquare.physicsBody = SKPhysicsBody(rectangleOf: shortSquare.size)
+        
+        self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
+
         
     }
     
     
     func touchDown(atPoint pos : CGPoint)
     {
+        // remove the first "circle" in the arry when we reach a maximum count
         if end > maxNodes
         {
             for node in self.children
@@ -93,11 +81,12 @@
                 }
             }
         }
-        if let n = self.physicsCircle?.copy() as! SKSpriteNode?
-        {
-            n.position = pos
-            self.addChild(n)
-            
+        
+        
+        // create a skspritenode to follow the mouse until realeased
+        let newCircle = SKSpriteNode(imageNamed: "circle.png")
+        newCircle.position = pos
+        self.addChild(newCircle)
 //            for node in self.children
 //            {
 //                if node.name == "circle"
@@ -105,9 +94,9 @@
 //                    end += 1
 //                }
 //            }
-        }
-        NNOOOOde?.isHidden = true
-        
+//        }
+//        NNOOOOde?.isHidden = true
+    
 //        // count the number of circle nodes
 //        count = 0
 //        
@@ -117,53 +106,29 @@
     
     func touchMoved(toPoint pos : CGPoint)
     {
-        self.children[end-1].position = pos
+        // follow the mouse
+        if let n = self.children.last
+        {
+            n.position = pos
+        }
 //        NNOOOOde?.isHidden = false
 //        NNOOOOde?.position = pos
     }
     
     func touchUp(atPoint pos : CGPoint)
     {
-        if let n = self.physicsCircle?.copy() as! SKSpriteNode?
+        // give sknode a phyiscs body
+        if let n = self.children.last
         {
-            n.position = pos
-            n.physicsBody = SKPhysicsBody(circleOfRadius: (physicsCircle?.size.width)! / 2)
+//            n.position = pos
+            n.physicsBody = SKPhysicsBody(circleOfRadius: (physicsCircle.size.width) / 2)
             n.name = "circle"
-            self.addChild(n)
             end += 1
         }
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
-        NNOOOOde?.isHidden = true
+//        NNOOOOde?.isHidden = true
     }
     
-    public func StartingScene()
-    {
-        if let rnode = self.rectangle?.copy() as! SKSpriteNode?
-        {
-            rnode.position = CGPoint(x: 0, y: -400)
-            self.addChild(rnode)
-            rnode.physicsBody = SKPhysicsBody(rectangleOf: rnode.size)
-        }
-        if let cnode = self.physicsCircle?.copy() as! SKSpriteNode?
-        {
-            cnode.position = CGPoint(x: -300, y: -200)
-            self.addChild(cnode)
-            cnode.physicsBody = SKPhysicsBody(circleOfRadius: (physicsCircle?.size.width)! / 2)
-        }
-        if let bnode = self.square?.copy() as! SKSpriteNode?
-        {
-            bnode.position = CGPoint(x: -300, y: -500)
-            self.addChild(bnode)
-            bnode.physicsBody = SKPhysicsBody(rectangleOf: bnode.size)
-        }
-        if let bnode = self.shortSquare?.copy() as! SKSpriteNode?
-        {
-            bnode.position = CGPoint(x: 300, y: -500)
-            self.addChild(bnode)
-            bnode.physicsBody = SKPhysicsBody(rectangleOf: bnode.size)
-        }
-        self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
-    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches { self.touchDown(atPoint: t.location(in: self)) }
