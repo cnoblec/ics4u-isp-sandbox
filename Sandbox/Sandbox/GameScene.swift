@@ -16,19 +16,26 @@
     private var rectangle : SKSpriteNode = SKSpriteNode()
     private var square : SKSpriteNode = SKSpriteNode()
     private var shortSquare : SKSpriteNode = SKSpriteNode()
+    var button = SKSpriteNode()
     var count : Int = 0
     var end  = 0
     let maxNodes = 30
+    var newNode = true
     
     override func didMove(to view: SKView)
     {
-    
+        
+        button = SKSpriteNode(imageNamed: "ClearButton.png")
+        button.position = CGPoint(x:0, y: self.size.height / (7 / 3))
+        button.setScale(0.3)
+        self.addChild(button)
+        
         self.rectangle = SKSpriteNode.init(color: UIColor.blue, size: CGSize.init(width: 700, height: 100))
         rectangle.run(SKAction.sequence([SKAction.wait(forDuration: 10),SKAction.removeFromParent()]))
         
         self.shortSquare = SKSpriteNode.init(color: UIColor.blue, size: CGSize.init(width: 100, height: 100))
         shortSquare.run(SKAction.sequence([SKAction.wait(forDuration: 3),SKAction.removeFromParent()]))
-
+        
         self.square = SKSpriteNode.init(color: UIColor.blue, size: CGSize.init(width: 100, height: 100))
         square.run(SKAction.sequence([SKAction.wait(forDuration: 10),SKAction.removeFromParent()]))
         
@@ -41,11 +48,11 @@
         rectangle.position = CGPoint(x: 0, y: -400)
         self.addChild(rectangle)
         rectangle.physicsBody = SKPhysicsBody(rectangleOf: rectangle.size)
-
+        
         physicsCircle.position = CGPoint(x: -300, y: -200)
         self.addChild(physicsCircle)
         physicsCircle.physicsBody = SKPhysicsBody(circleOfRadius: (physicsCircle.size.width) / 2)
-    
+        
         square.position = CGPoint(x: -300, y: -500)
         self.addChild(square)
         square.physicsBody = SKPhysicsBody(rectangleOf: square.size)
@@ -55,53 +62,67 @@
         shortSquare.physicsBody = SKPhysicsBody(rectangleOf: shortSquare.size)
         
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
-
+        
         
     }
     
     
     func touchDown(atPoint pos : CGPoint)
     {
-        // remove the first "circle" in the arry when we reach a maximum count
-        if self.children.count > maxNodes
-        {
+        if button.frame.contains(pos) {
+            print("Menu button pressed.")
             self.removeAllChildren()
-//            for node in self.children
-//            {
-//                if node.name == "circle"
-//                {
-//                    node.removeFromParent()
-//                    break
-//                }
-//            }
+            newNode = false
+        } else if self.children.count > maxNodes {
+            // remove the first "circle" in the arry when we reach a maximum count
+            
+            for node in self.children
+            {
+                if node.name == "circle"
+                {
+                    node.removeFromParent()
+                    break
+                }
+            }
         }
         
         
         // create a skspritenode to follow the mouse until realeased
-        let newCircle = SKSpriteNode(imageNamed: "circle.png")
-        newCircle.position = pos
-        self.addChild(newCircle)
-
+        if newNode == true
+        {
+            let newCircle = SKSpriteNode(imageNamed: "circle.png")
+            newCircle.position = pos
+            self.addChild(newCircle)
+        }
+        
     }
     
     func touchMoved(toPoint pos : CGPoint)
     {
         // follow the mouse
-        if let n = self.children.last
+        if newNode == true
         {
-            n.position = pos
+            if let n = self.children.last
+            {
+                n.position = pos
+            }
         }
     }
     
     func touchUp(atPoint pos : CGPoint)
     {
-        // give sknode a phyiscs body
-        if let n = self.children.last
+        if newNode == true
         {
-            n.physicsBody = SKPhysicsBody(circleOfRadius: (physicsCircle.size.width) / 2)
-            n.name = "circle"
-            end += 1
+            
+            // give sknode a phyiscs body
+            if let n = self.children.last
+            {
+                n.physicsBody = SKPhysicsBody(circleOfRadius: (physicsCircle.size.width) / 2)
+                n.name = "circle"
+                end += 1
+            }
         }
+        newNode = true
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
     }
     
