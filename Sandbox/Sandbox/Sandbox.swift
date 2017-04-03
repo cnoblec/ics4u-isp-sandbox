@@ -9,14 +9,15 @@
  import SpriteKit
  import GameplayKit
  
- class GameScene: SKScene {
+ class Sandbox: SKScene {
     
     private var circle : SKSpriteNode = SKSpriteNode()
     private var physicsCircle : SKSpriteNode = SKSpriteNode()
     private var rectangle : SKSpriteNode = SKSpriteNode()
     private var square : SKSpriteNode = SKSpriteNode()
     private var shortSquare : SKSpriteNode = SKSpriteNode()
-    var button = SKSpriteNode()
+    var clear = SKSpriteNode()
+    var add = SKSpriteNode()
     var count : Int = 0
     var end  = 0
     let maxNodes = 30
@@ -25,10 +26,15 @@
     override func didMove(to view: SKView)
     {
         
-        button = SKSpriteNode(imageNamed: "ClearButton.png")
-        button.position = CGPoint(x:0, y: self.size.height / (7 / 3))
-        button.setScale(0.3)
-        self.addChild(button)
+        clear = SKSpriteNode(imageNamed: "ClearButton.png")
+        clear.position = CGPoint(x:0, y: self.size.height / (7 / 3))
+        clear.setScale(0.3)
+        self.addChild(clear)
+        
+        add = SKSpriteNode(imageNamed: "AddButton.png")
+        add.position = CGPoint(x: self.size.width / (21 / 8), y: self.size.height / (7 / 3))
+        add.setScale(0.3)
+        self.addChild(add)
         
         self.rectangle = SKSpriteNode.init(color: UIColor.blue, size: CGSize.init(width: 700, height: 100))
         rectangle.run(SKAction.sequence([SKAction.wait(forDuration: 10),SKAction.removeFromParent()]))
@@ -50,6 +56,7 @@
         rectangle.physicsBody = SKPhysicsBody(rectangleOf: rectangle.size)
         
         physicsCircle.position = CGPoint(x: -300, y: -200)
+        physicsCircle.name = "circle"
         self.addChild(physicsCircle)
         physicsCircle.physicsBody = SKPhysicsBody(circleOfRadius: (physicsCircle.size.width) / 2)
         
@@ -69,10 +76,17 @@
     
     func touchDown(atPoint pos : CGPoint)
     {
-        if button.frame.contains(pos) {
-            print("Menu button pressed.")
-            self.removeAllChildren()
+        if clear.frame.contains(pos) {
+            print("Clear button pressed.")
+            for node in self.children
+            {
+                if node.name == "circle"
+                {
+                    node.removeFromParent()
+                }
+            }
             newNode = false
+            
         } else if self.children.count > maxNodes {
             // remove the first "circle" in the arry when we reach a maximum count
             
