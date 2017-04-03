@@ -18,6 +18,7 @@
     private var shortSquare : SKSpriteNode = SKSpriteNode()
     var clear = SKSpriteNode()
     var add = SKSpriteNode()
+    var config = SKSpriteNode()
     var count : Int = 0
     var end  = 0
     let maxNodes = 30
@@ -27,7 +28,7 @@
     {
         
         clear = SKSpriteNode(imageNamed: "ClearButton.png")
-        clear.position = CGPoint(x:0, y: self.size.height / (7 / 3))
+        clear.position = CGPoint(x:self.size.width / 2, y: self.size.height * (11/12))
         clear.setScale(0.3)
         self.addChild(clear)
         
@@ -36,14 +37,19 @@
         add.setScale(0.3)
         self.addChild(add)
         
+        config = SKSpriteNode(imageNamed: "Configuration.png")
+        config.position = CGPoint(x: self.size.width / (19 / 8), y: self.size.height / (7 / 3))
+        config.setScale(0.3)
+        self.addChild(config)
+        
         self.rectangle = SKSpriteNode.init(color: UIColor.blue, size: CGSize.init(width: 700, height: 100))
-        rectangle.run(SKAction.sequence([SKAction.wait(forDuration: 10),SKAction.removeFromParent()]))
+        rectangle.run(SKAction.sequence([SKAction.wait(forDuration: 6),SKAction.removeFromParent()]))
         
         self.shortSquare = SKSpriteNode.init(color: UIColor.blue, size: CGSize.init(width: 100, height: 100))
-        shortSquare.run(SKAction.sequence([SKAction.wait(forDuration: 3),SKAction.removeFromParent()]))
+        shortSquare.run(SKAction.sequence([SKAction.wait(forDuration: 1),SKAction.removeFromParent()]))
         
         self.square = SKSpriteNode.init(color: UIColor.blue, size: CGSize.init(width: 100, height: 100))
-        square.run(SKAction.sequence([SKAction.wait(forDuration: 10),SKAction.removeFromParent()]))
+        square.run(SKAction.sequence([SKAction.wait(forDuration: 6),SKAction.removeFromParent()]))
         
         self.circle = SKSpriteNode.init(imageNamed: "circle.png")
         
