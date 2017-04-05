@@ -16,13 +16,14 @@
     private var rectangle : SKSpriteNode = SKSpriteNode()
     private var square : SKSpriteNode = SKSpriteNode()
     private var shortSquare : SKSpriteNode = SKSpriteNode()
+    var triangle = SKSpriteNode()
     var clear = SKSpriteNode()
     var add = SKSpriteNode()
     var config = SKSpriteNode()
     var count : Int = 0
-    var end  = 0
     let maxNodes = 30
     var newNode = true
+    var newNodeType = "circle"
     
     override func didMove(to view: SKView)
     {
@@ -33,12 +34,12 @@
         self.addChild(clear)
         
         add = SKSpriteNode(imageNamed: "AddButton.png")
-        add.position = CGPoint(x: self.size.width / (21 / 8), y: self.size.height / (7 / 3))
+        add.position = CGPoint(x: self.size.width / (9 / 8), y: self.size.height * (11/12))
         add.setScale(0.3)
         self.addChild(add)
         
         config = SKSpriteNode(imageNamed: "Configuration.png")
-        config.position = CGPoint(x: self.size.width / (19 / 8), y: self.size.height / (7 / 3))
+        config.position = CGPoint(x: self.size.width * (1 / 8), y: self.size.height * (11/12))
         config.setScale(0.3)
         self.addChild(config)
         
@@ -54,6 +55,8 @@
         self.circle = SKSpriteNode.init(imageNamed: "circle.png")
         
         self.physicsCircle = SKSpriteNode.init(imageNamed: "circle.png")
+        
+        self.triangle = SKSpriteNode.init(imageNamed: "triangle.png")
         
         //starting scene
         
@@ -76,7 +79,6 @@
         
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
         
-        
     }
     
     
@@ -86,19 +88,28 @@
             print("Clear button pressed.")
             for node in self.children
             {
-                if node.name == "circle"
+                if node.name == newNodeType
                 {
                     node.removeFromParent()
                 }
             }
             newNode = false
+            newNodeType = "circle"
             
+        } else if add.frame.contains(pos) {
+            print("Add button pressed.")
+            newNodeType = "square"
+            newNode = false
+        } else if config.frame.contains(pos) {
+            print("config button pressed.")
+            newNodeType = "triangle"
+            newNode = false
         } else if self.children.count > maxNodes {
             // remove the first "circle" in the arry when we reach a maximum count
             
             for node in self.children
             {
-                if node.name == "circle"
+                if node.name == newNodeType
                 {
                     node.removeFromParent()
                     break
@@ -110,7 +121,7 @@
         // create a skspritenode to follow the mouse until realeased
         if newNode == true
         {
-            let newCircle = SKSpriteNode(imageNamed: "circle.png")
+            let newCircle = SKSpriteNode(imageNamed: "\(newNodeType).png")
             newCircle.position = pos
             self.addChild(newCircle)
         }
@@ -133,14 +144,29 @@
     {
         if newNode == true
         {
-            
-            // give sknode a phyiscs body
             if let n = self.children.last
             {
-                n.physicsBody = SKPhysicsBody(circleOfRadius: (physicsCircle.size.width) / 2)
-                n.name = "circle"
-                end += 1
+                if newNodeType == "circle"
+                {
+                    // give sknode a phyiscs body
+                    //if let n = self.children.last
+                    //{
+                    n.physicsBody = SKPhysicsBody(circleOfRadius: (physicsCircle.size.width) / 2)
+                    n.name = "circle"
+                    //}
+                } else if newNodeType == "square" {
+                    n.physicsBody = SKPhysicsBody(rectangleOf: square.frame.size)
+                } else if newNodeType == "triangle" {
+                    let trianglePath = CGMutablePath()
+                    trianglePath.move(to: CGPoint(x: -triangle.size.width/2, y: -triangle.size.height/2))
+                    trianglePath.addLine(to: CGPoint(x: triangle.size.width/2, y: -triangle.size.height/2))
+                    trianglePath.addLine(to: CGPoint(x: 0, y: triangle.size.height/2))
+                    trianglePath.addLine(to: CGPoint(x: -triangle.size.width/2, y: -triangle.size.height/2))
+                    n.physicsBody = SKPhysicsBody(polygonFrom: trianglePath)
+                    n.name = "triangle"
+                }
             }
+            
         }
         newNode = true
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
