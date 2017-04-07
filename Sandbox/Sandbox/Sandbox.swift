@@ -11,12 +11,12 @@
  
  class Sandbox: SKScene {
     
-    var physicsCircle : SKSpriteNode = SKSpriteNode()
-    var rectangle : SKSpriteNode = SKSpriteNode()
-    var shortSquare : SKSpriteNode = SKSpriteNode()
+    var physicsCircle = SKSpriteNode()
+    var rectangle = SKSpriteNode()
+    var shortSquare = SKSpriteNode()
 
-    var circle : SKSpriteNode = SKSpriteNode()
-    var square : SKSpriteNode = SKSpriteNode()
+    var circle = SKSpriteNode()
+    var square = SKSpriteNode()
     var triangle = SKSpriteNode()
     
     var circleButton = SKSpriteNode()
@@ -102,7 +102,6 @@
         tButtonHighlight.position = CGPoint(x: self.size.width * (3 / 4), y: self.size.height * (11/12))
         tButtonHighlight.setScale(1.05)
         self.addChild(tButtonHighlight)
-        
         
         sButtonHighlight.isHidden = true
         tButtonHighlight.isHidden = true
