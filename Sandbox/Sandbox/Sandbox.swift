@@ -23,6 +23,10 @@
     var squareButton = SKSpriteNode()
     var triangleButton = SKSpriteNode()
     
+    var cButtonHighlight = SKShapeNode()
+    var sButtonHighlight = SKShapeNode()
+    var tButtonHighlight = SKShapeNode()
+    
     var clear = SKSpriteNode()
     var add = SKSpriteNode()
     var config = SKSpriteNode()
@@ -64,14 +68,14 @@
         triangleButton.position = CGPoint(x: self.size.width * (3 / 4), y: self.size.height * (11/12))
         self.addChild(triangleButton)
         
-        self.rectangle = SKSpriteNode.init(color: UIColor.blue, size: CGSize.init(width: 700, height: 100))
-        rectangle.run(SKAction.sequence([SKAction.wait(forDuration: 6),SKAction.removeFromParent()]))
+        self.rectangle = SKSpriteNode.init(color: UIColor.blue, size: CGSize.init(width: 500, height: 100))
+        rectangle.run(SKAction.sequence([SKAction.wait(forDuration: 7),SKAction.removeFromParent()]))
         
         self.shortSquare = SKSpriteNode.init(color: UIColor.blue, size: CGSize.init(width: 100, height: 100))
-        shortSquare.run(SKAction.sequence([SKAction.wait(forDuration: 1),SKAction.removeFromParent()]))
+        shortSquare.run(SKAction.sequence([SKAction.wait(forDuration: 2),SKAction.removeFromParent()]))
         
         self.square = SKSpriteNode.init(imageNamed: "square.png")
-        square.run(SKAction.sequence([SKAction.wait(forDuration: 6),SKAction.removeFromParent()]))
+        square.run(SKAction.sequence([SKAction.wait(forDuration: 7),SKAction.removeFromParent()]))
         
         self.circle = SKSpriteNode.init(imageNamed: "circle.png")
         
@@ -79,13 +83,35 @@
         
         self.triangle = SKSpriteNode.init(imageNamed: "triangle.png")
         
-
+        cButtonHighlight = SKShapeNode(circleOfRadius: circleButton.size.width / 2 + 1)
+        cButtonHighlight.position = CGPoint(x: self.size.width * (1 / 4), y: self.size.height * (11/12))
+        self.addChild(cButtonHighlight)
         
-        rectangle.position = CGPoint(x: 50, y: 450)
+        sButtonHighlight = SKShapeNode(rect: square.frame.standardized)
+        sButtonHighlight.position = CGPoint(x: self.size.width * (1 / 2), y: self.size.height * (11/12))
+        sButtonHighlight.setScale(1.05)
+        self.addChild(sButtonHighlight)
+        
+        let trianglePath = CGMutablePath()
+        trianglePath.move(to: CGPoint(x: -triangle.size.width/2, y: -triangle.size.height/2))
+        trianglePath.addLine(to: CGPoint(x: triangle.size.width/2, y: -triangle.size.height/2))
+        trianglePath.addLine(to: CGPoint(x: 0, y: triangle.size.height/2))
+        trianglePath.addLine(to: CGPoint(x: -triangle.size.width/2, y: -triangle.size.height/2))
+        
+        tButtonHighlight = SKShapeNode(path: trianglePath)
+        tButtonHighlight.position = CGPoint(x: self.size.width * (3 / 4), y: self.size.height * (11/12))
+        tButtonHighlight.setScale(1.05)
+        self.addChild(tButtonHighlight)
+        
+        
+        sButtonHighlight.isHidden = true
+        tButtonHighlight.isHidden = true
+        
+        rectangle.position = CGPoint(x: 50, y: 350)
         self.addChild(rectangle)
         rectangle.physicsBody = SKPhysicsBody(rectangleOf: rectangle.size)
         
-        physicsCircle.position = CGPoint(x: 50, y: 350)
+        physicsCircle.position = CGPoint(x: 50, y: 550)
         physicsCircle.name = "circle"
         self.addChild(physicsCircle)
         physicsCircle.physicsBody = SKPhysicsBody(circleOfRadius: (physicsCircle.size.width) / 2)
@@ -94,7 +120,7 @@
         self.addChild(square)
         square.physicsBody = SKPhysicsBody(rectangleOf: square.size)
         
-        shortSquare.position = CGPoint(x: 50, y: 250)
+        shortSquare.position = CGPoint(x: 550, y: 150)
         self.addChild(shortSquare)
         shortSquare.physicsBody = SKPhysicsBody(rectangleOf: shortSquare.size)
         
@@ -128,15 +154,25 @@
             print("square button pressed.")
             newNodeType = "square"
             newNode = false
+            sButtonHighlight.isHidden = false
+            tButtonHighlight.isHidden = true
+            cButtonHighlight.isHidden = true
             
         } else if triangleButton.frame.contains(pos) {
             print("triangle button pressed.")
             newNodeType = "triangle"
             newNode = false
+            tButtonHighlight.isHidden = false
+            sButtonHighlight.isHidden = true
+            cButtonHighlight.isHidden = true
+            
         } else if circleButton.frame.contains(pos) {
             print("circle button pressed.")
             newNodeType = "circle"
             newNode = false
+            cButtonHighlight.isHidden = false
+            sButtonHighlight.isHidden = true
+            tButtonHighlight.isHidden = true
             
         } else if self.children.count > maxNodes {
             // remove the first "circle" in the arry when we reach a maximum count
