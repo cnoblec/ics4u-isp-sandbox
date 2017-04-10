@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3F2504BE1E92CCCD00EDC3B4 /* Configuration.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F2504BD1E92CCCD00EDC3B4 /* Configuration.png */; };
+		3F2504BE1E92CCCD00EDC3B4 /* DemoButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F2504BD1E92CCCD00EDC3B4 /* DemoButton.png */; };
 		3F5EEB821E5F6968008D382A /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F5EEB811E5F6968008D382A /* circle.png */; };
 		3F7F2E961E9C13AE00133C8D /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7F2E951E9C13AE00133C8D /* Configuration.swift */; };
+		3F7F2E981E9C2F7B00133C8D /* DemoSelect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7F2E971E9C2F7B00133C8D /* DemoSelect.swift */; };
 		3F8DAB831E51F74500158167 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8DAB821E51F74500158167 /* AppDelegate.swift */; };
 		3F8DAB891E51F74500158167 /* Sandbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8DAB881E51F74500158167 /* Sandbox.swift */; };
 		3F8DAB8B1E51F74500158167 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8DAB8A1E51F74500158167 /* GameViewController.swift */; };
@@ -20,15 +21,15 @@
 		3F8DAB9E1E51F7D500158167 /* Sofware Story Board.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 3F8DAB9C1E51F7D500158167 /* Sofware Story Board.JPG */; };
 		3F9888021E9521A7006A51A8 /* triangle.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F9888011E9521A7006A51A8 /* triangle.png */; };
 		3F9888041E9521DE006A51A8 /* square.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F9888031E9521DE006A51A8 /* square.png */; };
-		3FCE81161E8D98F700DA4F76 /* PlusButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FCE81151E8D98F700DA4F76 /* PlusButton.png */; };
-		3FCE81181E8D9C2600DA4F76 /* AddButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FCE81171E8D9C2600DA4F76 /* AddButton.png */; };
+		3FCE81181E8D9C2600DA4F76 /* ConfigButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FCE81171E8D9C2600DA4F76 /* ConfigButton.png */; };
 		3FD526D41E8D36DE00D9DCA4 /* ClearButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FD526D31E8D36DE00D9DCA4 /* ClearButton.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3F2504BD1E92CCCD00EDC3B4 /* Configuration.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Configuration.png; sourceTree = "<group>"; };
+		3F2504BD1E92CCCD00EDC3B4 /* DemoButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DemoButton.png; sourceTree = "<group>"; };
 		3F5EEB811E5F6968008D382A /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle.png; sourceTree = "<group>"; };
 		3F7F2E951E9C13AE00133C8D /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		3F7F2E971E9C2F7B00133C8D /* DemoSelect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoSelect.swift; sourceTree = "<group>"; };
 		3F8DAB7F1E51F74500158167 /* Sandbox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sandbox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F8DAB821E51F74500158167 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F8DAB881E51F74500158167 /* Sandbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sandbox.swift; sourceTree = "<group>"; };
@@ -41,8 +42,7 @@
 		3F8DAB9C1E51F7D500158167 /* Sofware Story Board.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Sofware Story Board.JPG"; sourceTree = "<group>"; };
 		3F9888011E9521A7006A51A8 /* triangle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = triangle.png; sourceTree = "<group>"; };
 		3F9888031E9521DE006A51A8 /* square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square.png; sourceTree = "<group>"; };
-		3FCE81151E8D98F700DA4F76 /* PlusButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlusButton.png; sourceTree = "<group>"; };
-		3FCE81171E8D9C2600DA4F76 /* AddButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AddButton.png; sourceTree = "<group>"; };
+		3FCE81171E8D9C2600DA4F76 /* ConfigButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ConfigButton.png; sourceTree = "<group>"; };
 		3FD526D31E8D36DE00D9DCA4 /* ClearButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ClearButton.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -80,6 +80,7 @@
 				3F8DAB821E51F74500158167 /* AppDelegate.swift */,
 				3F8DAB881E51F74500158167 /* Sandbox.swift */,
 				3F7F2E951E9C13AE00133C8D /* Configuration.swift */,
+				3F7F2E971E9C2F7B00133C8D /* DemoSelect.swift */,
 				3F8DAB8A1E51F74500158167 /* GameViewController.swift */,
 				3F8DAB8C1E51F74500158167 /* Main.storyboard */,
 				3F8DAB8F1E51F74500158167 /* Assets.xcassets */,
@@ -93,9 +94,8 @@
 			isa = PBXGroup;
 			children = (
 				3FD526D31E8D36DE00D9DCA4 /* ClearButton.png */,
-				3FCE81171E8D9C2600DA4F76 /* AddButton.png */,
-				3FCE81151E8D98F700DA4F76 /* PlusButton.png */,
-				3F2504BD1E92CCCD00EDC3B4 /* Configuration.png */,
+				3FCE81171E8D9C2600DA4F76 /* ConfigButton.png */,
+				3F2504BD1E92CCCD00EDC3B4 /* DemoButton.png */,
 				3F9888011E9521A7006A51A8 /* triangle.png */,
 				3F9888031E9521DE006A51A8 /* square.png */,
 				3F5EEB811E5F6968008D382A /* circle.png */,
@@ -167,13 +167,12 @@
 				3F8DAB9E1E51F7D500158167 /* Sofware Story Board.JPG in Resources */,
 				3F9888021E9521A7006A51A8 /* triangle.png in Resources */,
 				3F8DAB8E1E51F74500158167 /* Main.storyboard in Resources */,
-				3FCE81181E8D9C2600DA4F76 /* AddButton.png in Resources */,
+				3FCE81181E8D9C2600DA4F76 /* ConfigButton.png in Resources */,
 				3F8DAB901E51F74500158167 /* Assets.xcassets in Resources */,
-				3F2504BE1E92CCCD00EDC3B4 /* Configuration.png in Resources */,
+				3F2504BE1E92CCCD00EDC3B4 /* DemoButton.png in Resources */,
 				3F5EEB821E5F6968008D382A /* circle.png in Resources */,
 				3FD526D41E8D36DE00D9DCA4 /* ClearButton.png in Resources */,
 				3F8DAB931E51F74500158167 /* LaunchScreen.storyboard in Resources */,
-				3FCE81161E8D98F700DA4F76 /* PlusButton.png in Resources */,
 				3F9888041E9521DE006A51A8 /* square.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -187,6 +186,7 @@
 			files = (
 				3F8DAB891E51F74500158167 /* Sandbox.swift in Sources */,
 				3F7F2E961E9C13AE00133C8D /* Configuration.swift in Sources */,
+				3F7F2E981E9C2F7B00133C8D /* DemoSelect.swift in Sources */,
 				3F8DAB8B1E51F74500158167 /* GameViewController.swift in Sources */,
 				3F8DAB9D1E51F7D500158167 /* README.md in Sources */,
 				3F8DAB831E51F74500158167 /* AppDelegate.swift in Sources */,

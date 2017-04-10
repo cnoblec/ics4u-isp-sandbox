@@ -28,8 +28,8 @@
     var tButtonHighlight = SKShapeNode()
     
     var clear = SKSpriteNode()
-    var add = SKSpriteNode()
     var config = SKSpriteNode()
+    var demo = SKSpriteNode()
     
     let maxNodes = 30
     
@@ -46,15 +46,15 @@
         clear.setScale(0.3)
         self.addChild(clear)
         
-        add = SKSpriteNode(imageNamed: "AddButton.png")
-        add.position = CGPoint(x: self.size.width / (9 / 8), y: self.size.height * (10/12))
-        add.setScale(0.3)
-        self.addChild(add)
-        
-        config = SKSpriteNode(imageNamed: "Configuration.png")
-        config.position = CGPoint(x: self.size.width * (1 / 8), y: self.size.height * (10/12))
+        config = SKSpriteNode(imageNamed: "ConfigButton.png")
+        config.position = CGPoint(x: self.size.width / (9 / 8), y: self.size.height * (10/12))
         config.setScale(0.3)
         self.addChild(config)
+        
+        demo = SKSpriteNode(imageNamed: "DemoButton.png")
+        demo.position = CGPoint(x: self.size.width * (1 / 8), y: self.size.height * (10/12))
+        demo.setScale(0.3)
+        self.addChild(demo)
         
         circleButton = SKSpriteNode(imageNamed: "circle.png")
         circleButton.position = CGPoint(x: self.size.width * (1 / 4), y: self.size.height * (11/12))
@@ -144,23 +144,30 @@
             }
             newNode = false
             
-        } else if add.frame.contains(pos) {
+        } else if config.frame.contains(pos) {
             print("Add button pressed.")
             newNode = false
             // Create the menu scene with the same dimensions as the current scene
-            let ConfigScene = Config(size: self.size)
+            let scene = Config(size: self.size)
             
             // Configure a transition object to specify the type of animation that handles the move between scenes
             let reveal = SKTransition.moveIn(with: SKTransitionDirection.right, duration: 0.5)
             
             // Access the current view and present the new scene
             // NOTE: We know the current scene has a view object (since the game is running) so it is safe to force-unwrap the optional view property of the current scene
-            self.view!.presentScene(ConfigScene, transition: reveal)
+            self.view!.presentScene(scene, transition: reveal)
 
-        } else if config.frame.contains(pos) {
+        } else if demo.frame.contains(pos) {
             print("Config button pressed.")
             newNode = false
-          
+            let scene = Demo(size: self.size)
+            
+            // Configure a transition object to specify the type of animation that handles the move between scenes
+            let reveal = SKTransition.moveIn(with: SKTransitionDirection.left, duration: 0.5)
+            
+            // Access the current view and present the new scene
+            // NOTE: We know the current scene has a view object (since the game is running) so it is safe to force-unwrap the optional view property of the current scene
+            self.view!.presentScene(scene, transition: reveal)
             
             
         } else if squareButton.frame.contains(pos) {
