@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3F2504BE1E92CCCD00EDC3B4 /* Configuration.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F2504BD1E92CCCD00EDC3B4 /* Configuration.png */; };
 		3F5EEB821E5F6968008D382A /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F5EEB811E5F6968008D382A /* circle.png */; };
+		3F7F2E961E9C13AE00133C8D /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7F2E951E9C13AE00133C8D /* Configuration.swift */; };
 		3F8DAB831E51F74500158167 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8DAB821E51F74500158167 /* AppDelegate.swift */; };
 		3F8DAB891E51F74500158167 /* Sandbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8DAB881E51F74500158167 /* Sandbox.swift */; };
 		3F8DAB8B1E51F74500158167 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8DAB8A1E51F74500158167 /* GameViewController.swift */; };
@@ -27,6 +28,7 @@
 /* Begin PBXFileReference section */
 		3F2504BD1E92CCCD00EDC3B4 /* Configuration.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Configuration.png; sourceTree = "<group>"; };
 		3F5EEB811E5F6968008D382A /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle.png; sourceTree = "<group>"; };
+		3F7F2E951E9C13AE00133C8D /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		3F8DAB7F1E51F74500158167 /* Sandbox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sandbox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F8DAB821E51F74500158167 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F8DAB881E51F74500158167 /* Sandbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sandbox.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 			children = (
 				3F8DAB821E51F74500158167 /* AppDelegate.swift */,
 				3F8DAB881E51F74500158167 /* Sandbox.swift */,
+				3F7F2E951E9C13AE00133C8D /* Configuration.swift */,
 				3F8DAB8A1E51F74500158167 /* GameViewController.swift */,
 				3F8DAB8C1E51F74500158167 /* Main.storyboard */,
 				3F8DAB8F1E51F74500158167 /* Assets.xcassets */,
@@ -183,6 +186,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F8DAB891E51F74500158167 /* Sandbox.swift in Sources */,
+				3F7F2E961E9C13AE00133C8D /* Configuration.swift in Sources */,
 				3F8DAB8B1E51F74500158167 /* GameViewController.swift in Sources */,
 				3F8DAB9D1E51F7D500158167 /* README.md in Sources */,
 				3F8DAB831E51F74500158167 /* AppDelegate.swift in Sources */,

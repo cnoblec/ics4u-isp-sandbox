@@ -124,6 +124,9 @@
         shortSquare.physicsBody = SKPhysicsBody(rectangleOf: shortSquare.size)
         
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
+        let noGravity = CGVector(dx: 0, dy: 0)
+        //self.physicsWorld.gravity = noGravity
+        //self.physicsBody?.velocity
         
     }
     
@@ -144,10 +147,21 @@
         } else if add.frame.contains(pos) {
             print("Add button pressed.")
             newNode = false
+            // Create the menu scene with the same dimensions as the current scene
+            let ConfigScene = Config(size: self.size)
             
+            // Configure a transition object to specify the type of animation that handles the move between scenes
+            let reveal = SKTransition.moveIn(with: SKTransitionDirection.right, duration: 0.5)
+            
+            // Access the current view and present the new scene
+            // NOTE: We know the current scene has a view object (since the game is running) so it is safe to force-unwrap the optional view property of the current scene
+            self.view!.presentScene(ConfigScene, transition: reveal)
+
         } else if config.frame.contains(pos) {
-            print("config button pressed.")
+            print("Config button pressed.")
             newNode = false
+          
+            
             
         } else if squareButton.frame.contains(pos) {
             print("square button pressed.")
@@ -173,7 +187,7 @@
             sButtonHighlight.isHidden = true
             tButtonHighlight.isHidden = true
             
-        } else if self.children.count > maxNodes {
+        } else if self.children.count > maxNodes + 10 {
             // remove the first "circle" in the arry when we reach a maximum count
             
             for node in self.children
