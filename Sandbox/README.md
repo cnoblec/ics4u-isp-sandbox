@@ -1,5 +1,9 @@
 # Grade 12 Computer Science ISP
 
+
+#RUN ON iPhone 5s 
+
+
 Overall expectations being assessed in this independent study project:
 
 * A1. 	demonstrate the ability to use different data types and expressions when creating computer programs;

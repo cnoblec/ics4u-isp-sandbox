@@ -31,15 +31,23 @@
     var config = SKSpriteNode()
     var demo = SKSpriteNode()
     
+    var initx : CGFloat = 0
+    var inity : CGFloat = 0
+    var finalx : CGFloat = 0
+    var finaly : CGFloat = 0
+    
     let maxNodes = 30
     
     var newNode = true
     var newNodeType = "circle"
     
-    
+    var startScene = "standard"
     
     override func didMove(to view: SKView)
     {
+        // decide which scene to play
+        
+        startScene = Demo().selection
         
         clear = SKSpriteNode(imageNamed: "ClearButton.png")
         clear.position = CGPoint(x:self.size.width / 2, y: self.size.height * (10/12))
@@ -133,6 +141,8 @@
     
     func touchDown(atPoint pos : CGPoint)
     {
+        initx = pos.x
+        inity = pos.y
         if clear.frame.contains(pos) {
             print("Clear button pressed.")
             for node in self.children
@@ -146,7 +156,7 @@
             newNode = false
             
         } else if config.frame.contains(pos) {
-            print("Add button pressed.")
+            print("Config button pressed.")
             newNode = false
             // Create the menu scene with the same dimensions as the current scene
             let scene = Config(size: self.size)
@@ -159,7 +169,7 @@
             self.view!.presentScene(scene, transition: reveal)
 
         } else if demo.frame.contains(pos) {
-            print("Config button pressed.")
+            print("Demo button pressed.")
             newNode = false
             let scene = Demo(size: self.size)
             
@@ -168,6 +178,7 @@
             
             // Access the current view and present the new scene
             // NOTE: We know the current scene has a view object (since the game is running) so it is safe to force-unwrap the optional view property of the current scene
+            
             self.view!.presentScene(scene, transition: reveal)
             
             
@@ -221,6 +232,11 @@
     
     func touchMoved(toPoint pos : CGPoint)
     {
+        finalx = pos.x
+        finaly = pos.y
+        
+        
+        
         // follow the mouse
         if newNode == true
         {
@@ -233,6 +249,10 @@
     
     func touchUp(atPoint pos : CGPoint)
     {
+        
+        
+        let v : CGVector = CGVector(dx: finalx - initx, dy: finaly-inity)
+        
         if newNode == true
         {
             // give sknode a phyiscs body
@@ -242,6 +262,9 @@
                 {
                     n.physicsBody = SKPhysicsBody(circleOfRadius: (physicsCircle.size.width) / 2)
                     n.name = "circle"
+                    n.physicsBody?.restitution = 1
+                    n.physicsBody?.linearDamping = 0
+                    n.physicsBody?.velocity = v
                 } else if newNodeType == "square" {
                     n.physicsBody = SKPhysicsBody(rectangleOf: square.frame.size)
                     n.name = "square"
