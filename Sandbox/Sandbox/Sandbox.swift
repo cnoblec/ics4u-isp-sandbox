@@ -76,13 +76,15 @@
         triangleButton.position = CGPoint(x: self.size.width * (3 / 4), y: self.size.height * (11/12))
         self.addChild(triangleButton)
         
-        self.rectangle = SKSpriteNode.init(color: UIColor.blue, size: CGSize.init(width: 500, height: 100))
+        self.rectangle = SKSpriteNode.init(imageNamed: "square.png")
+        rectangle.xScale = 9
         rectangle.run(SKAction.sequence([SKAction.wait(forDuration: 7),SKAction.removeFromParent()]))
         
         self.shortSquare = SKSpriteNode.init(color: UIColor.blue, size: CGSize.init(width: 100, height: 100))
         shortSquare.run(SKAction.sequence([SKAction.wait(forDuration: 2),SKAction.removeFromParent()]))
         
         self.square = SKSpriteNode.init(imageNamed: "square.png")
+        square.setScale(1.5)
         square.run(SKAction.sequence([SKAction.wait(forDuration: 7),SKAction.removeFromParent()]))
         
         self.circle = SKSpriteNode.init(imageNamed: "circle.png")
@@ -127,11 +129,7 @@
         square.position = CGPoint(x: 50, y: 150)
         self.addChild(square)
         square.physicsBody = SKPhysicsBody(rectangleOf: square.size)
-        
-        shortSquare.position = CGPoint(x: 550, y: 150)
-        self.addChild(shortSquare)
-        shortSquare.physicsBody = SKPhysicsBody(rectangleOf: shortSquare.size)
-        
+
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
         //self.physicsWorld.gravity = noGravity
         //self.physicsBody?.velocity
@@ -226,17 +224,13 @@
             let newCircle = SKSpriteNode(imageNamed: "\(newNodeType).png")
             newCircle.position = pos
             self.addChild(newCircle)
+            newCircle.name = "temp"
         }
         
     }
     
     func touchMoved(toPoint pos : CGPoint)
     {
-        finalx = pos.x
-        finaly = pos.y
-        
-        
-        
         // follow the mouse
         if newNode == true
         {
@@ -249,9 +243,23 @@
     
     func touchUp(atPoint pos : CGPoint)
     {
+        finalx = pos.x
+        finaly = pos.y
         
+        let v : CGVector = CGVector(dx: (finalx - initx) * 1.5, dy: (finaly-inity) * 1.5)
         
-        let v : CGVector = CGVector(dx: finalx - initx, dy: finaly-inity)
+        if clear.frame.contains(pos) {
+            for node in self.children
+            {
+                if node.name == "temp"
+                {
+                    node.removeFromParent()
+                }
+            }
+            //self.view?.isPaused = true
+            newNode = false
+            
+        }
         
         if newNode == true
         {
@@ -261,12 +269,13 @@
                 if newNodeType == "circle"
                 {
                     n.physicsBody = SKPhysicsBody(circleOfRadius: (physicsCircle.size.width) / 2)
-                    n.name = "circle"
-                    n.physicsBody?.restitution = 1
-                    n.physicsBody?.linearDamping = 0
+//                    n.physicsBody?.restitution = 1
+//                    n.physicsBody?.linearDamping = 0
                     n.physicsBody?.velocity = v
+                    n.name = "circle"
                 } else if newNodeType == "square" {
                     n.physicsBody = SKPhysicsBody(rectangleOf: square.frame.size)
+                    n.physicsBody?.velocity = v
                     n.name = "square"
                 } else if newNodeType == "triangle" {
                     let trianglePath = CGMutablePath()
@@ -275,6 +284,7 @@
                     trianglePath.addLine(to: CGPoint(x: 0, y: triangle.size.height/2))
                     trianglePath.addLine(to: CGPoint(x: -triangle.size.width/2, y: -triangle.size.height/2))
                     n.physicsBody = SKPhysicsBody(polygonFrom: trianglePath)
+                    n.physicsBody?.velocity = v
                     n.name = "triangle"
                 }
             }
