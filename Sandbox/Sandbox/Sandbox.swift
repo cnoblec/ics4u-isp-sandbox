@@ -124,7 +124,7 @@
         shortSquare.physicsBody = SKPhysicsBody(rectangleOf: shortSquare.size)
         
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
-        let noGravity = CGVector(dx: 0, dy: 0)
+        let pseudoPause = CGVector(dx: 0, dy: 0)
         //self.physicsWorld.gravity = noGravity
         //self.physicsBody?.velocity
         
