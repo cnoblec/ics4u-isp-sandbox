@@ -83,8 +83,9 @@
         
         self.triangle = SKSpriteNode.init(imageNamed: "triangle.png")
         
-        cButtonHighlight = SKShapeNode(circleOfRadius: circleButton.size.width / 2 + 1)
+        cButtonHighlight = SKShapeNode(circleOfRadius: circleButton.size.width / 2)
         cButtonHighlight.position = CGPoint(x: self.size.width * (1 / 4), y: self.size.height * (11/12))
+        cButtonHighlight.setScale(1.05)
         self.addChild(cButtonHighlight)
         
         sButtonHighlight = SKShapeNode(rect: square.frame.standardized)
@@ -124,7 +125,6 @@
         shortSquare.physicsBody = SKPhysicsBody(rectangleOf: shortSquare.size)
         
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
-        let pseudoPause = CGVector(dx: 0, dy: 0)
         //self.physicsWorld.gravity = noGravity
         //self.physicsBody?.velocity
         
@@ -142,6 +142,7 @@
                     node.removeFromParent()
                 }
             }
+            //self.view?.isPaused = true
             newNode = false
             
         } else if config.frame.contains(pos) {
