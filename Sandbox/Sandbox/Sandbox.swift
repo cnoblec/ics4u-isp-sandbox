@@ -36,6 +36,9 @@
     var finalx : CGFloat = 0
     var finaly : CGFloat = 0
     
+    var xStretch: CGFloat = 1
+    var yStretch: CGFloat = 1
+    
     let maxNodes = 30
     
     var newNode = true
@@ -84,7 +87,6 @@
         shortSquare.run(SKAction.sequence([SKAction.wait(forDuration: 2),SKAction.removeFromParent()]))
         
         self.square = SKSpriteNode.init(imageNamed: "square.png")
-        square.setScale(1.5)
         square.run(SKAction.sequence([SKAction.wait(forDuration: 7),SKAction.removeFromParent()]))
         
         self.circle = SKSpriteNode.init(imageNamed: "circle.png")
@@ -129,6 +131,7 @@
         square.position = CGPoint(x: 50, y: 150)
         self.addChild(square)
         square.physicsBody = SKPhysicsBody(rectangleOf: square.size)
+        
 
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
         //self.physicsWorld.gravity = noGravity
@@ -246,7 +249,7 @@
         finalx = pos.x
         finaly = pos.y
         
-        let v : CGVector = CGVector(dx: (finalx - initx) * 1.5, dy: (finaly-inity) * 1.5)
+        let v : CGVector = CGVector(dx: (finalx - initx) * 1.7, dy: (finaly-inity) * 1.7)
         
         if clear.frame.contains(pos) {
             for node in self.children
