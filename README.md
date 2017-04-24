@@ -37,7 +37,7 @@ It gives a visiual representation of simple physics and allows you to test and s
 
 *Have you seen another application that you wish to improve on? Has someone asked you to create this?*
 
-There is a game called Osmos, which gave me a bit of inspiration. Having an interest in physics and learning more about spritekit, and many other more complex sandbox and simulators also contributed towards my inspiration for this app.
+There is a game called Osmos, which gave me a bit of inspiration. Having an interest in physics and learning more about SpriteKit, and many other more complex sandbox and simulators also contributed towards my inspiration for this app.
 
 ### What is your prior experience in this area?
 
@@ -49,13 +49,13 @@ No experience writing and application like this, but I do a have some experience
 
 *For example, you might be writing a networked application for the first time. Or, you may be writing an application that requires a particularly well designed user interface. Describe what you expect to learn by writing this application.*
 
-I expect to learn a lot about designing a UI and building a fluid app, as well as more indepth usage of spritekit. 
+I expect to learn a lot about designing a UI and building a fluid app, as well as more indepth usage of SpriteKit. 
 
 ### What dependencies, if any, will be required to complete your project?
 
 *If you are writing a networked application, you might be using an API like Alamofire to simplify that part of the implementation. If you are writing an application that communicates over Bluetooth, you may be using the Core Bluetooth framework. Please list any expected dependencies for your project.*
 
-The only forseen third-party usage will be spritekit and their physics engine.
+The only forseen third-party usage will be SpriteKit and their physics engine.
 
 ### Rate the personal difficulty level of this project.
 
@@ -63,7 +63,7 @@ I think that this will provide a healthy challenge for me, and that I will have 
 
 ### Identify what you think your biggest challenge for successfully completing this ISP will be.
 
-becoming comfortable with using spritekit and managing my time well will be a big part of this project. I also hope to improve my github commits and frequency.
+Becoming comfortable with using SpriteKit and managing my time well will be a big part of this project. I also hope to improve my github commits and frequency.
 
 ### Make storyboards to indicate the user interface and/or functionality of your application.
 
@@ -71,7 +71,7 @@ becoming comfortable with using spritekit and managing my time well will be a bi
 
 I'd like to have the ability to drag form either side to pull up the menus.
 
-Once you choose a new object, text "tap to place" will appear and the new opject button (three lines) will turn into a littel trash can, where you can cancel that item.
+Once you choose a new object, text "tap to place" will appear and the new object button (three lines) will turn into a littel trash can, where you can cancel that item.
 
 When adding new elements, there will be mass and friction sliders. There will be more options, like walls, when you scroll down further.
 
